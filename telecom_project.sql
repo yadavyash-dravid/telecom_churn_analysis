@@ -18,18 +18,18 @@
    07  Churn by Services
    08  Churn by Tenure
    09  Churn Reasons & Categories
-   10  Payment Method Analysis       ← NEW
-   11  Offer Effectiveness           ← NEW
-   12  Geographic Revenue Breakdown  ← NEW
-   13  Contract Value Comparison     ← NEW
+   10  Payment Method Analysis      
+   11  Offer Effectiveness          
+   12  Geographic Revenue Breakdown  
+   13  Contract Value Comparison     
    14  Retention Risk Scoring (Active Customers)
-   15  Executive Summary CTE         ← NEW
+   15  Executive Summary CTE         
    ============================================================ */
 
 
 /* ============================================================
    01  DATA VALIDATION
-   Purpose : Confirm data integrity before any analysis.
+   Purpose : Confirm data integrity.
    ============================================================ */
 
 -- Total unique customers in the dataset
@@ -62,7 +62,6 @@ FROM telecom_customer_churn;
    02  OVERVIEW KPIs
    Purpose : Establish the overall baseline — total customers,
              churn rate, and customer distribution by status.
-   Tableau  : KPI banner cards at the top of the dashboard.
    ============================================================ */
 
 -- Overall churn rate and customer distribution by status
@@ -78,7 +77,6 @@ GROUP BY Customer_Status;
    03  REVENUE IMPACT
    Purpose : Quantify how much revenue was lost to churners
              vs retained and newly joined customers.
-   Tableau  : Revenue donut chart or KPI card showing lost revenue.
    ============================================================ */
 
 -- Revenue by customer status (absolute + percentage share)
@@ -132,7 +130,6 @@ ORDER BY churn_rate_pct DESC;
    05  CHURN BY DEMOGRAPHICS
    Purpose : Profile who churned — age, gender, marital status,
              dependents, and referral behaviour.
-   Tableau  : Bar charts for each demographic dimension.
    ============================================================ */
 
 -- Churn by age group
@@ -220,7 +217,6 @@ GROUP BY
    06  CHURN BY CONTRACT & OFFERS
    Purpose : Understand which contract types and promotional
              offers are associated with higher churn.
-   Tableau  : Stacked bar or pie chart.
    ============================================================ */
 
 -- Churn by contract type
@@ -250,7 +246,6 @@ ORDER BY churn_pct DESC;
    Purpose : Determine which services (internet type, tech
              support, phone, streaming) were most common among
              churners, and specifically among competitor churners.
-   Tableau  : Horizontal bar chart per service category.
    ============================================================ */
 
 -- Churn by internet type (all churners)
@@ -311,7 +306,6 @@ GROUP BY Internet_Service;
    08  CHURN BY TENURE
    Purpose : Understand at what stage of the customer lifecycle
              churn is most likely. Also profiles new joiners.
-   Tableau  : Histogram or grouped bar chart by tenure band.
    ============================================================ */
 
 -- Churn distribution by tenure band
@@ -366,7 +360,6 @@ GROUP BY
              Churn_Category gives the bucket (Competitor,
              Dissatisfaction, etc.), Churn_Reason gives the
              specific reason within that bucket.
-   Tableau  : Treemap or bar chart, colour-coded by category.
    ============================================================ */
 
 -- Top 10 specific churn reasons with category context
@@ -399,7 +392,6 @@ ORDER BY churn_pct DESC;
    Purpose : Examine whether payment method correlates with
              churn. Electronic check users are often flagged
              as higher risk in telecom datasets.
-   Tableau  : Bar chart — churn rate by payment method.
    ============================================================ */
 
 -- Churn rate by payment method (churners vs total per method)
@@ -421,7 +413,6 @@ ORDER BY churn_rate_pct DESC;
    11  OFFER EFFECTIVENESS                              ← NEW
    Purpose : Compare how well each offer retains customers.
              Which offers correlate with staying vs churning?
-   Tableau  : Grouped bar — stayed vs churned per offer.
    ============================================================ */
 
 -- Retention rate per offer (stayed vs churned breakdown)
@@ -444,7 +435,6 @@ ORDER BY retention_rate_pct DESC;
    Purpose : Identify which cities contribute the most revenue
              and which are losing it to churn. Useful for
              prioritising regional retention campaigns.
-   Tableau  : Map + bar combo, colour by revenue lost.
    ============================================================ */
 
 -- Revenue by city — total earned vs lost to churn (top 10 cities)
@@ -468,7 +458,6 @@ ORDER BY revenue_lost DESC;
    Purpose : Compare the average revenue, tenure, and monthly
              charge across contract types. Shows the long-term
              business value difference between contract tiers.
-   Tableau  : Side-by-side bar chart or scatter plot.
    ============================================================ */
 
 -- Average customer value by contract type (all statuses)
@@ -491,7 +480,6 @@ ORDER BY avg_lifetime_revenue DESC;
              Score ≥ 7  → High Risk
              Score 4–6  → Medium Risk
              Score < 4  → Low Risk
-   Tableau  : Table or scatter plot coloured by risk level.
    ============================================================ */
 
 -- Risk score for each active customer based on churn-correlated factors
